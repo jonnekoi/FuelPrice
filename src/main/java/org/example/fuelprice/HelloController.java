@@ -6,12 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,14 +38,14 @@ public class HelloController {
     @FXML
     private Button fiButton;
 
-    private String language = "fi";
+    private static String language;
 
     private static final String url = "jdbc:mysql://localhost:3306/fuelprice";
     private static final String user = "root";
     private static final String password = "";
 
     @FXML
-    protected void calculatePrice() {
+    public void calculatePrice() {
         try {
             double fuelPrice = Double.parseDouble(priceField.getText().replace(",", "."));
             double distance = Double.parseDouble(distanceField.getText().replace(",", "."));
@@ -54,8 +54,9 @@ public class HelloController {
             polttoaineenHintaText.setText(fuelPrice + "€/l");
             resultText.setText(price + "€");
             saveData();
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println("Error: " + e);
+            resultText.setText("Invalid input. Please enter valid numbers.");
         }
     }
 
@@ -98,9 +99,9 @@ public class HelloController {
     }
 
     public void saveData() {
-        int fuel_price = Integer.parseInt(priceField.getText());
-        int distance = Integer.parseInt(distanceField.getText());
-        int consumption = Integer.parseInt(kulutusField.getText());
+        double fuel_price = Double.parseDouble(priceField.getText().replace(",", "."));
+        double distance = Double.parseDouble(distanceField.getText().replace(",", "."));
+        double consumption = Double.parseDouble(kulutusField.getText().replace(",", "."));
         String language_used = language;
 
         String tablename = "data";
@@ -110,9 +111,9 @@ public class HelloController {
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, String.valueOf(fuel_price));
-            pstmt.setString(2, String.valueOf(distance));
-            pstmt.setString(3, String.valueOf(consumption));
+            pstmt.setBigDecimal(1, BigDecimal.valueOf(fuel_price));
+            pstmt.setBigDecimal(2, BigDecimal.valueOf(distance));
+            pstmt.setBigDecimal(3, BigDecimal.valueOf(consumption));
             pstmt.setString(4, language_used);
 
             pstmt.executeUpdate();
