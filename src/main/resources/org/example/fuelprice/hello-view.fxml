@@ -11,17 +11,17 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Label text="Fuel price (€)" />
-    <TextField fx:id="priceField" promptText="Enter fuel price..."/>
-    <Label text="Distance (km)" />
-    <TextField fx:id="distanceField" promptText="Enter distance..."/>
-    <Label text="Consumption (l/100km)" />
-    <TextField fx:id="kulutusField" promptText="Enter car consumption..."/>
-    <Button id="calculateButton" onAction="#calculatePrice" text="calculate.button" />
-    <Button fx:id="enButton" text="english.button" />
-    <Button fx:id="jpButton" text="japanese.button" />
-    <Button fx:id="faButton" text="farsi.button" />
-    <Button fx:id="fiButton" text="finnish.button" />
+    <Label fx:id="priceLabel" text="%priceLabel" />
+    <TextField fx:id="priceField" promptText="%priceField"/>
+    <Label fx:id="distanceLabel" text="%distanceLabel" />
+    <TextField fx:id="distanceField" promptText="%distanceField"/>
+    <Label fx:id="consumptionLabel" text="%consumptionLabel" />
+    <TextField fx:id="kulutusField" promptText="%kulutusField"/>
+    <Button  fx:id="calculateButton" onAction="#calculatePrice" text="%calculateButton" />
+    <Button fx:id="enButton" onAction="#setEN" text="%enButton" />
+    <Button fx:id="fiButton" onAction="#setFI" text="%fiButton" />
+    <Button fx:id="irButton" onAction="#setIR" text="%irButton" />
+    <Button fx:id="jpButton" onAction="#setJP" text="%jpButton" />
     <Text fx:id="polttoaineenHintaText" strokeType="OUTSIDE"/>
     <Text fx:id="resultText" strokeType="OUTSIDE" strokeWidth="0.0" />
 </VBox>
