@@ -40,9 +40,6 @@ public class HelloController {
 
     private static String language;
 
-    private static String buttonColor;
-
-    private static String clickedButton;
 
     private static final String url = "jdbc:mysql://localhost:3306/fuelprice";
     private static final String user = "root";
@@ -67,24 +64,18 @@ public class HelloController {
     public void setIR(ActionEvent actionEvent) {
         Locale l = new Locale("ir");
         language = "ir";
-        buttonColor = "#add8e6";
-        clickedButton = "irButton";
         loadView(l);
     }
 
     public void setJP(ActionEvent actionEvent) {
         Locale l = new Locale("jp");
         language = "jp";
-        buttonColor = "#add8e6";
-        clickedButton = "jpButton";
         loadView(l);
     }
-    @FXML
+
     public void setFI(ActionEvent actionEvent) {
         Locale l = new Locale("fi");
         language = "fi";
-        buttonColor = "#add8e6";
-        clickedButton = "fiButton";
         loadView(l);
     }
 
@@ -92,8 +83,6 @@ public class HelloController {
     public void setEN(ActionEvent actionEvent) {
         Locale l = new Locale("en");
         language = "en";
-        buttonColor = "#add8e6";
-        clickedButton = "enButton";
         loadView(l);
     }
 
@@ -106,8 +95,6 @@ public class HelloController {
             Scene currentScene = stage.getScene();
             Scene newScene = new Scene(root, currentScene.getWidth(), currentScene.getHeight());
             stage.setScene(newScene);
-            Button button = (Button) newScene.lookup("#" + clickedButton);
-            button.setStyle("-fx-background-color: " + buttonColor + ";");
         } catch (IOException e) {
             e.printStackTrace();
         }
