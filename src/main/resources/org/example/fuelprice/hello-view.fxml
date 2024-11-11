@@ -17,7 +17,7 @@
     <TextField fx:id="distanceField" promptText="%distanceField"/>
     <Label fx:id="consumptionLabel" text="%consumptionLabel" />
     <TextField fx:id="kulutusField" promptText="%kulutusField"/>
-    <Button  fx:id="calculateButton" onAction="#calculatePrice" text="%calculateButton" />
+    <Button style="-fx-background-color: #add8e6" fx:id="calculateButton" onAction="#calculatePrice" text="%calculateButton" />
     <Button fx:id="enButton" onAction="#setEN" text="%enButton" />
     <Button fx:id="fiButton" onAction="#setFI" text="%fiButton" />
     <Button fx:id="irButton" onAction="#setIR" text="%irButton" />
